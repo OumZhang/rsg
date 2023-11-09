@@ -1,4 +1,4 @@
-# RSG: Rotated Staggered Grid based on Devito (Beta)
+# RSG: Rotated Staggered Grid based on Devito
 
 Built upon the open-source Python finite-difference framework, Devito, this RSG elastic wave solver is designed to model seismic wave propagation in intricate anisotropic media.
 
@@ -13,3 +13,6 @@ Built upon the open-source Python finite-difference framework, Devito, this RSG 
 #### Getting Started:
 
 For a practical introduction and hands-on experience, refer to the tutorial Jupyter notebook located at rsg/example/Tutorial.ipynb. This guide walks users through the application of the package, showcasing wave propagation modeling within a two-layered structure (comprising an upper water layer and a lower TTI media) in 2D.
+
+#### Update:
+Nov 9. Support lateast Devito 4.8.3
