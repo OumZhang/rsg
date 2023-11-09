@@ -7,7 +7,7 @@ from devito import Operator
 from devito import div, grad, diag
 
 
-def ForwardOperator(v, tau, model, stencil, geometry, rec1,rec2,rec3, space_order=2, save=False, moment="iso", comp="vall", **kwargs):
+def ForwardOperator(v, tau, model, stencil, geometry, rec1,rec2,rec3, space_order=8, save=False, moment="iso", comp="vall", **kwargs):
 
     """
     Construct method for the forward modelling operator in an anisotropic media.

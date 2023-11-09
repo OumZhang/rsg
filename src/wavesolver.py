@@ -107,7 +107,7 @@ class AnisotropySolver(object):
                 C_mul_strain = tensorproduct(elastic_66_matrix, strain_matrix) # shape-> (6,6,6)
                 sec_contract = tensorcontraction(C_mul_strain, (1, 2))  # shape-> (6,1)
 
-                C_mul_strain_expr = getCmulstrain_3d(sec_contract, self.tau)
+                C_mul_strain_expr = getCmulstrain_3d(sec_contract) # shape (6,1) -> (3,3)
 
             elif self.model.grid.dim == 2:
                 strain_matrix = getstrainmatrix_2d(self.v, self.model.grid, self.so)
@@ -121,7 +121,7 @@ class AnisotropySolver(object):
                 C_mul_strain = tensorproduct(elastic_33_matrix, strain_matrix) # shape-> (3,3) * (3 * 1) 
                 sec_contract = tensorcontraction(C_mul_strain, (1, 2))  # shape-> (3,3) * (3 * 1)  -> (3,1)
 
-                C_mul_strain_expr = getCmulstrain_2d(sec_contract, self.tau)
+                C_mul_strain_expr = getCmulstrain_2d(sec_contract) # shape (3,1) -> (2,2)
             u_v = Eq(self.v.forward,  self.model.damp * (self.v + self.dt * self.model.b * divtau))
             u_t = Eq(self.tau.forward,  self.model.damp * (self.tau + self.dt * C_mul_strain_expr))
             
@@ -321,14 +321,10 @@ def fdcoeff_1st(order):
     return np.linalg.inv(s_mat).dot(vector_order.transpose())
 
 
-def getCmulstrain_3d(sec_contract, repl):
-    # repl is a dummy term to be replacement and get into a corresponding format.
-    C_mul_strain_expr = repl.replace(repl[0,0], sec_contract[0,0]).replace(repl[0,1], sec_contract[5,0]).replace(repl[0,2], sec_contract[4,0]).replace(repl[1,0], sec_contract[5,0]).replace(repl[1,1], sec_contract[1,0]).replace(repl[1,2], sec_contract[3,0]).replace(repl[2,0], sec_contract[4,0]).replace(repl[2,1], sec_contract[3,0]).replace(repl[2,2], sec_contract[2,0])
-    return C_mul_strain_expr
+def getCmulstrain_3d(sec_contract):
+    return Matrix(3,3, [sec_contract[0,0], sec_contract[5,0], sec_contract[4,0], 
+                        sec_contract[5,0], sec_contract[1,0], sec_contract[3,0],
+                        sec_contract[4,0], sec_contract[3,0], sec_contract[2,0]])
 
-
-
-def getCmulstrain_2d(sec_contract, repl):
-    # repl is a dummy term to be replacement and get into a corresponding format.
-    C_mul_strain_expr = repl.replace(repl[0,0], sec_contract[0,0]).replace(repl[0,1], sec_contract[2,0]).replace(repl[1,0], sec_contract[2,0]).replace(repl[1,1], sec_contract[1,0])
-    return C_mul_strain_expr
+def getCmulstrain_2d(sec_contract):
+    return Matrix(2,2, [sec_contract[0,0], sec_contract[2,0], sec_contract[2,0], sec_contract[1,0]])
