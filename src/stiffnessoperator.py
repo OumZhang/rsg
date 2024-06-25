@@ -21,7 +21,7 @@ class StiffnessMatrix:
                                                             C44 = 4.035, C45 = 0, C46 = 0,
                                                                     C55 = 4.035, C56 = 0,
                                                                           C66 = 4.035, mat = None):
-        if (mat != None):
+        if (mat is not None):
             assert mat.shape == (6,6), "mat should be 6 by 6 matrix"
             C11 = mat[0][0]
             C12 = mat[0][1]
