@@ -18,3 +18,9 @@ For a practical introduction and hands-on experience, refer to the tutorial Jupy
 
 #### Update:
 Nov 9. Support lateast Devito 4.8.3
+
+#### Citing:
+For more detailed information, please refer to https://doi.org/10.1016/j.cageo.2024.105850
+To cite a specific release of rsgdevito through Zenodo, please follow this link: https://doi.org/10.5281/zenodo.14611320
+
+
