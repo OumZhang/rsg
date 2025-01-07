@@ -1,0 +1,18 @@
+abstract: '<p>Version 1.0
+
+  Connect with Zenodo.</p>'
+authors:
+- affiliation: Geological Survey of Canada
+  family-names: Oumeng Zhang
+cff-version: 1.2.0
+date-released: '2025-01-07'
+doi: 10.5281/zenodo.14611321
+identifiers:
+- type: swh
+  value: swh:1:dir:08c4fe03b99ad8cdad3d3065a6a33ca60e0e224c;origin=https://doi.org/10.5281/zenodo.14611320;visit=swh:1:snp:f0af28e34cb32fb8840b6d4d504b5b94bb028307;anchor=swh:1:rel:612a52bd304afda32e23c64a147b16be0c13714a;path=OumZhang-rsg-0b49bd6
+license:
+- gpl-3.0-only
+repository-code: https://github.com/OumZhang/rsg/tree/v1.0
+title: 'OumZhang/rsg: RSGDEVITO1.0'
+type: software
+version: v1.0
